@@ -6,7 +6,9 @@ API REST para controle de professores, turmas e alunos do Colégio Porto.
 Em desenvolvimento
 
 📋 Informações do Projeto
+
 Disciplina: Desenvolvimento de APIs e Microserviços (DAM)
+
 Integrantes: Anna Julia Higa Farincho, Letícia Macedo, Evelyn Mercês
 Grupo: 4
 Instituição: IMPACTA
