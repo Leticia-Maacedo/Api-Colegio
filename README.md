@@ -4,15 +4,16 @@ Sistema de gerenciamento escolar desenvolvido para a disciplina de Desenvolvimen
 
 API REST para controle de professores, turmas e alunos do ColÃ©gio Porto.
 
-## íº§ Status
+## ğŸš§ Status
 Em desenvolvimento
 
-## í±¥ Integrantes do Grupo
-- [Seu Nome Completo]
-- [Nome do Colega 2]
-- [Nome do Colega 3]
+ğŸ“‹ InformaÃ§Ãµes do Projeto
+Disciplina: Desenvolvimento de APIs e MicroserviÃ§os (DAM)
+Integrantes: Anna Julia Higa Farincho, LetÃ­cia Macedo, Evelyn MercÃªs
+Grupo: 4
+InstituiÃ§Ã£o: IMPACTA
 
-## í» ï¸ Tecnologias
+## ğŸ› ï¸ Tecnologias
 - Python 3
 - Flask
 - SQLAlchemy
