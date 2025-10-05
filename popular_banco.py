@@ -18,6 +18,7 @@ with app.app_context():
         nome='Kleber Chiles',
         email='kleber.chiles@colegioporto.com.br',
         cpf='123.456.789-01',
+        idade=32,
         materia='DevOps'
     )
     
@@ -25,6 +26,7 @@ with app.app_context():
         nome='Giovani Bontempo',
         email='giovani.bontempo@colegioporto.com.br',
         cpf='123.456.789-02',
+        idade=43,
         materia='API'
     )
     
@@ -32,6 +34,7 @@ with app.app_context():
         nome='Odair Gabriel',
         email='odair.gabriel@colegioporto.com.br',
         cpf='123.456.789-03',
+        idade=47,
         materia='Desenvolvimento Mobile'
     )
     
@@ -42,7 +45,7 @@ with app.app_context():
     # ==== TURMA ====
     turma = Turma(
         nome='SI 3A',
-        ano=2024,
+        ano=2025,
         periodo='noite',
         professor_id=prof3.id  # Odair Gabriel
     )

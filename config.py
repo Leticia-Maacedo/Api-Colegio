@@ -11,4 +11,4 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     
     # chave secreta para sessoes
-    SECRET_KEY = 'porto-secreto-2024'
+    SECRET_KEY = 'porto-secreto-2025'

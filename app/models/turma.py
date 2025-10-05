@@ -6,11 +6,12 @@ class Turma(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(100), nullable=False)
+    professor_id = db.Column(db.Integer, db.ForeignKey('professores.id'), nullable=True)
     ano = db.Column(db.Integer, nullable=False)
     periodo = db.Column(db.String(20))
 
     # relacionamento com Professor (opcional)
-    professor_id = db.Column(db.Integer, db.ForeignKey('professores.id'), nullable=True)
+    professor = db.relationship('Professor', backref='turma', lazy=True)
 
     # relacionamento com Aluno
     alunos = db.relationship('Aluno', backref='turma', lazy=True)

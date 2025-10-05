@@ -10,6 +10,9 @@ class Aluno(db.Model):
     cpf = db.Column(db.String(14), unique=True, nullable=False)
     data_nascimento = db.Column(db.Date, nullable=False)
     idade = db.Column(db.Integer, nullable=False)
+    turma_id = db.Column(db.Integer, db.ForeignKey('turmas.id'), nullable=True)
+    nota_primeiro_semestre = db.Column(db.Float)
+    nota_segundo_semestre = db.Column(db.Float)
     nota_final = db.Column(db.Float)
     situacao = db.Column(db.String(20))  # aprovado, reprovado, cursando
     data_cadastro = db.Column(db.DateTime, default=datetime.utcnow)

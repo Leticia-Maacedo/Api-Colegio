@@ -68,7 +68,7 @@ def criar_turma():
               example: SI 3A
             ano:
               type: integer
-              example: 2024
+              example: 2025
             periodo:
               type: string
               example: noite
