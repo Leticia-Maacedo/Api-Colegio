@@ -5,7 +5,7 @@ API REST para controle de professores, turmas e alunos do Colégio Porto.
 ## 🚧 Status
 Em desenvolvimento
 
-📋 Informações do Projeto
+## 📋 Informações do Projeto
 
 Disciplina: Desenvolvimento de APIs e Microserviços (DAM)
 
