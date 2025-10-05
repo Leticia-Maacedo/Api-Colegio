@@ -1,0 +1,47 @@
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from flasgger import Swagger
+from config import Config
+
+# inicializa o banco de dados
+db = SQLAlchemy()
+
+def create_app():
+    # cria a aplicacao flask
+    app = Flask(__name__)
+    
+    # carrega as configuracoes
+    app.config.from_object(Config)
+    
+    # inicializa o banco com a app
+    db.init_app(app)
+    
+    # configuracao do swagger para documentacao
+    swagger_config = {
+        "headers": [],
+        "specs": [
+            {
+                "endpoint": 'apispec',
+                "route": '/apispec.json',
+            }
+        ],
+        "static_url_path": "/flasgger_static",
+        "swagger_ui": True,
+        "specs_route": "/docs"
+    }
+    
+    template = {
+        "info": {
+            "title": "API Colégio Porto",
+            "description": "API REST para gerenciamento escolar",
+            "version": "1.0.0"
+        }
+    }
+    
+    Swagger(app, config=swagger_config, template=template)
+    
+    # cria as tabelas do banco se nao existirem
+    with app.app_context():
+        db.create_all()
+    
+    return app
