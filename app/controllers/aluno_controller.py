@@ -99,7 +99,6 @@ def criar_aluno():
     """
     dados = request.get_json()
     
-    # validacoes
     if not dados.get('nome'):
         return jsonify({'erro': 'Nome e obrigatorio'}), 400
     
@@ -115,21 +114,18 @@ def criar_aluno():
     if not dados.get('idade'):
         return jsonify({'erro': 'Idade e obrigatoria'}), 400
     
-    # verifica se ja existe
     if Aluno.query.filter_by(email=dados['email']).first():
         return jsonify({'erro': 'Email ja cadastrado'}), 400
     
     if Aluno.query.filter_by(cpf=dados['cpf']).first():
         return jsonify({'erro': 'CPF ja cadastrado'}), 400
     
-    # verifica se turma existe (se foi informada)
     if dados.get('turma_id'):
         turma = Turma.query.get(dados['turma_id'])
         if not turma:
             return jsonify({'erro': 'Turma nao encontrada'}), 404
     
     try:
-        # converte a data de string para date
         data_nasc = datetime.strptime(dados['data_nascimento'], '%d/%m/%Y').date()
         
         novo_aluno = Aluno(

@@ -2,7 +2,6 @@ from flask import Blueprint, request, jsonify
 from app import db
 from app.models.professor import Professor
 
-# cria o blueprint para as rotas de professor
 professor_bp = Blueprint('professores', __name__, url_prefix='/api/professores')
 
 

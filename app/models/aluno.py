@@ -14,10 +14,8 @@ class Aluno(db.Model):
     nota_primeiro_semestre = db.Column(db.Float)
     nota_segundo_semestre = db.Column(db.Float)
     nota_final = db.Column(db.Float)
-    situacao = db.Column(db.String(20))  # aprovado, reprovado, cursando
+    situacao = db.Column(db.String(20))
     data_cadastro = db.Column(db.DateTime, default=datetime.utcnow)
-    
-    # chave estrangeira para turma
     turma_id = db.Column(db.Integer, db.ForeignKey('turmas.id'), nullable=True)
     
     def __repr__(self):

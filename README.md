@@ -109,7 +109,7 @@ Este projeto foi desenvolvido como parte da disciplina de **Desenvolvimento de A
         datetime data_cadastro
     }
   </div>
----
+
 
 ## 🚀 Como Executar
 

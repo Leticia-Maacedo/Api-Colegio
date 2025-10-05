@@ -3,20 +3,12 @@ from flask_sqlalchemy import SQLAlchemy
 from flasgger import Swagger
 from config import Config
 
-# inicializa o banco de dados
 db = SQLAlchemy()
 
 def create_app():
-    # cria a aplicacao flask
     app = Flask(__name__)
-    
-    # carrega as configuracoes
     app.config.from_object(Config)
-    
-    # inicializa o banco com a app
     db.init_app(app)
-    
-    # configuracao do swagger para documentacao
     swagger_config = {
         "headers": [],
         "specs": [
@@ -40,11 +32,8 @@ def create_app():
     
     Swagger(app, config=swagger_config, template=template)
     
-    # cria as tabelas do banco se nao existirem
     with app.app_context():
         db.create_all()
-    
-# importa e registra os blueprints
     from app.controllers.professor_controller import professor_bp
     from app.controllers.turma_controller import turma_bp
     from app.controllers.aluno_controller import aluno_bp

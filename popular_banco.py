@@ -2,18 +2,15 @@ from app import create_app, db
 from app.models.professor import Professor
 from app.models.turma import Turma
 from app.models.aluno import Aluno
-from datetime import datetime
+from datetime import datetime 
 
 app = create_app()
 
 with app.app_context():
-    # limpa o banco
     db.drop_all()
     db.create_all()
     
     print("Populando banco de dados....")
-    
-    # ==== PROFESSORES ====
     prof1 = Professor(
         nome='Kleber Chiles',
         email='kleber.chiles@colegioporto.com.br',
@@ -42,19 +39,17 @@ with app.app_context():
     db.session.commit()
     print("✓ Professores criados")
     
-    # ==== TURMA ====
     turma = Turma(
         nome='SI 3A',
         ano=2025,
         periodo='noite',
-        professor_id=prof3.id  # Odair Gabriel
+        professor_id=prof3.id
     )
     
     db.session.add(turma)
     db.session.commit()
     print("✓ Turma criada")
     
-    # ==== ALUNAS ====
     aluna1 = Aluno(
         nome='Anna Julia Higa Farincho',
         email='anna.farincho@email.com',

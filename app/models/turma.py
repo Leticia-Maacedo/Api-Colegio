@@ -9,11 +9,7 @@ class Turma(db.Model):
     professor_id = db.Column(db.Integer, db.ForeignKey('professores.id'), nullable=True)
     ano = db.Column(db.Integer, nullable=False)
     periodo = db.Column(db.String(20))
-
-    # relacionamento com Professor (opcional)
     professor = db.relationship('Professor', backref='turma', lazy=True)
-
-    # relacionamento com Aluno
     alunos = db.relationship('Aluno', backref='turma', lazy=True)
 
     def __repr__(self):

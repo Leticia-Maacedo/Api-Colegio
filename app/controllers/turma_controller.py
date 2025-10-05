@@ -83,14 +83,12 @@ def criar_turma():
     """
     dados = request.get_json()
     
-    # validacoes
     if not dados.get('nome'):
         return jsonify({'erro': 'Nome e obrigatorio'}), 400
     
     if not dados.get('ano'):
         return jsonify({'erro': 'Ano e obrigatorio'}), 400
     
-    # verifica se professor existe (se foi informado)
     if dados.get('professor_id'):
         professor = Professor.query.get(dados['professor_id'])
         if not professor:
@@ -201,7 +199,6 @@ def deletar_turma(id):
     if not turma:
         return jsonify({'erro': 'Turma nao encontrada'}), 404
     
-    # verifica se tem alunos vinculados
     if turma.alunos:
         return jsonify({'erro': 'Nao e possivel deletar turma com alunos vinculados'}), 400
     
