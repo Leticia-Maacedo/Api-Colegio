@@ -77,7 +77,7 @@ with app.app_context():
     aluna3 = Aluno(
         nome='Evelyn Mercês',
         email='evelyn.merces@email.com',
-        cpf='987.654.321-03',
+        cpf='405.025.308-98',
         data_nascimento=datetime.strptime('10/02/2005', '%d/%m/%Y').date(),
         idade=20,
         nota_final=7.5,
