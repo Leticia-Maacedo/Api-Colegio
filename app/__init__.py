@@ -44,4 +44,9 @@ def create_app():
     with app.app_context():
         db.create_all()
     
+# importa e registra os blueprints
+    from app.controllers.professor_controller import professor_bp
+    app.register_blueprint(professor_bp)
+    
+    return app
     return app
