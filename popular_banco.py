@@ -11,7 +11,7 @@ with app.app_context():
     db.drop_all()
     db.create_all()
     
-    print("Populando banco de dados...")
+    print("Populando banco de dados....")
     
     # ==== PROFESSORES ====
     prof1 = Professor(

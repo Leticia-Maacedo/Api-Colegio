@@ -71,36 +71,10 @@ Este projeto foi desenvolvido como parte da disciplina de **Desenvolvimento de A
 
 ---
 
-## 📁 Estrutura do Projeto
----
-api-colegio-porto/
-├── app/
-│   ├── __init__.py           # Configuração do Flask e Swagger
-│   ├── models/               # Modelos do banco de dados
-│   │   ├── __init__.py
-│   │   ├── professor.py      # Model Professor
-│   │   ├── turma.py          # Model Turma
-│   │   └── aluno.py          # Model Aluno
-│   └── controllers/          # Controladores (rotas/endpoints)
-│       ├── __init__.py
-│       ├── professor_controller.py
-│       ├── turma_controller.py
-│       └── aluno_controller.py
-├── config.py                 # Configurações do banco e app
-├── run.py                    # Arquivo principal
-├── popular_banco.py          # Script para popular dados iniciais
-├── requirements.txt          # Dependências Python
-├── Dockerfile                # Configuração Docker
-├── docker-compose.yml        # Orquestração Docker
-└── README.md                 # Este arquivo
-
----
-
 ## 🗄️ Modelo de Dados
 
 <div align="center">
-```mermaid
-erDiagram
+
     PROFESSOR ||--o{ TURMA : leciona
     TURMA ||--o{ ALUNO : possui
     
@@ -135,23 +109,20 @@ erDiagram
         datetime data_cadastro
     }
   </div>
-
-Relacionamentos
 ---
-Relação             Cardinalidade       Descrição 
-Professor → Turma       1:N           Um professor pode lecionar várias turmasTurma → Aluno1:NUma turma pode ter vários alunos
----
-Turma → Aluno           1:N           Uma turma pode ter vários alunos
----
-🚀 Como Executar
-Opção 1️⃣: Executar Localmente
-Pré-requisitos
 
-Python 3.11 ou superior
-pip (gerenciador de pacotes Python)
+## 🚀 Como Executar
 
-Passo a Passo
-bash# 1. Clone o repositório
+### 🖥️ Opção 1️⃣: Executar Localmente  
+
+#### **Pré-requisitos**
+- Python 3.11 ou superior  
+- `pip` (gerenciador de pacotes Python)
+
+#### **Passo a Passo**
+
+```bash
+# 1. Clone o repositório
 git clone https://github.com/SEU_USUARIO/api-colegio-porto.git
 cd api-colegio-porto
 
@@ -172,20 +143,23 @@ python popular_banco.py
 
 # 6. Execute a aplicação
 python run.py
-✅ Pronto! Acesse:
+✅ Pronto!
+A API estará disponível em:
 
 🌐 API: http://localhost:5000
+
 📚 Documentação: http://localhost:5000/docs
 
-
-Opção 2️⃣: Executar com Docker
+🐳 Opção 2️⃣: Executar com Docker
 Pré-requisitos
-
 Docker instalado
+
 Docker Compose instalado
 
 Passo a Passo
-bash# 1. Clone o repositório
+bash
+Copiar código
+# 1. Clone o repositório
 git clone https://github.com/SEU_USUARIO/api-colegio-porto.git
 cd api-colegio-porto
 
@@ -194,13 +168,16 @@ docker-compose up --build
 
 # Para rodar em background
 docker-compose up -d
-✅ Pronto! Acesse:
+Acesse:
 
 🌐 API: http://localhost:5000
+
 📚 Documentação: http://localhost:5000/docs
 
-Comandos úteis Docker:
-bash# Ver logs
+Comandos úteis Docker
+bash
+Copiar código
+# Ver logs
 docker-compose logs -f
 
 # Parar containers
@@ -208,83 +185,76 @@ docker-compose down
 
 # Rebuild completo
 docker-compose build --no-cache
-
 📚 Documentação da API
 A documentação completa e interativa está disponível via Swagger UI:
 🔗 http://localhost:5000/docs
+
 📊 Dados Iniciais
-O script popular_banco.py cria automaticamente:
-<table>
-<tr>
-<td>
-👨‍🏫 Professores
+O script popular_banco.py cria automaticamente os seguintes registros:
 
+👨‍🏫 Professores	🏫 Turma
 Kleber Chiles
-
 Matéria: DevOps
 
-
 Giovani Bontempo
-
 Matéria: API
 
-
 Odair Gabriel
-
-Matéria: Desenvolvimento Mobile
-
-
-
-</td>
-<td>
-🏫 Turma
-
-SI 3A
-
-Ano: 2024
+Matéria: Desenvolvimento Mobile	Turma: SI 3A
+Ano: 2025
 Período: Noite
 Professor: Odair Gabriel
 
-
-
-</td>
-</tr>
-<tr>
-<td colspan="2">
 👨‍🎓 Alunas
-NomeNotaSituaçãoAnna Julia Higa Farincho7.8✅ AprovadaLetícia Macedo8.2✅ AprovadaEvelyn Mercês7.5✅ Aprovada
-</td>
-</tr>
-</table>
+
+Nome	Nota	Situação
+Anna Julia Higa Farincho	7.8	✅ Aprovada
+Letícia Macedo	8.2	✅ Aprovada
+Evelyn Mercês	7.5	✅ Aprovada
 
 ✅ Funcionalidades Implementadas
-<div align="center">
-FeatureStatusCRUD de Professores✅CRUD de Turmas✅CRUD de Alunos✅Relacionamentos entre entidades✅Validações de dados✅Tratamento de erros✅Documentação Swagger✅Arquitetura MVC✅Docker✅Git/GitHub✅
-</div>
+Funcionalidade	Status
+CRUD de Professores	✅
+CRUD de Turmas	✅
+CRUD de Alunos	✅
+Relacionamentos entre entidades	✅
+Validações de dados	✅
+Tratamento de erros	✅
+Documentação Swagger	✅
+Arquitetura MVC	✅
+Docker	✅
+Git/GitHub	✅
 
 🔒 Validações Implementadas
-
 ✅ Email único para Professores e Alunos
-✅ CPF único para Professores e Alunos
-✅ Campos obrigatórios verificados
-✅ Integridade referencial preservada
-✅ Data de nascimento em formato válido (DD/MM/AAAA)
-✅ Verificação de existência de entidades relacionadas
-✅ Proteção contra deleção com dependências
----
-📖 O Que Aprendemos
-Durante o desenvolvimento deste projeto, adquirimos conhecimento em:
-<table>
-<tr>
-<td width="50%">
----
-🎯 Conceitos Técnicos
 
+✅ CPF único para Professores e Alunos
+
+✅ Campos obrigatórios verificados
+
+✅ Integridade referencial preservada
+
+✅ Data de nascimento no formato válido (DD/MM/AAAA)
+
+✅ Verificação de existência de entidades relacionadas
+
+✅ Proteção contra deleção de registros com dependências
+
+📖 O Que Aprendemos
+Durante o desenvolvimento deste projeto, aprendemos e aplicamos conceitos como:
+
+🎯 Conceitos Técnicos
 Arquitetura MVC
 APIs RESTful
 ORM (SQLAlchemy)
 Relacionamentos de banco de dados
 Conteinerização com Docker
 
-</td>
-<td width="50%">
+👩‍💻 Desenvolvido por
+Evelyn Mercês da Silva
+📆 Ano: 2025
+🏫 Curso: Sistemas de Informação
+💡 Projeto: API Colégio Porto
+
+✨ "Aprender fazendo é o melhor caminho para dominar a tecnologia."
+
