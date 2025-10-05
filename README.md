@@ -1,26 +1,78 @@
-🎓 API Colégio Porto
-Sistema de gerenciamento escolar desenvolvido para a disciplina de Desenvolvimento de Aplicações Móveis (DAM).
-API REST completa para controle de Professores, Turmas e Alunos do Colégio Porto, seguindo arquitetura MVC.
+<div align="center">
 
-👥 Integrantes do Grupo
+# 🎓 API Colégio Porto
 
-Anna Julia Higa Farincho
-Letícia Macedo
-Evelyn Mercês
+### Sistema de Gerenciamento Escolar
 
+[![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://www.python.org/downloads/)
+[![Flask](https://img.shields.io/badge/Flask-2.3.0-green.svg)](https://flask.palletsprojects.com/)
+[![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-3.0.5-red.svg)](https://www.sqlalchemy.org/)
+[![Docker](https://img.shields.io/badge/Docker-Ready-blue.svg)](https://www.docker.com/)
+[![License](https://img.shields.io/badge/License-Educational-yellow.svg)]()
 
-🛠️ Tecnologias Utilizadas
+API REST completa para controle de **Professores**, **Turmas** e **Alunos**, desenvolvida com Flask seguindo arquitetura MVC.
 
-Python 3.11
-Flask - Framework web
-SQLAlchemy - ORM para banco de dados
-SQLite - Banco de dados
-Flasgger - Documentação automática (Swagger)
-Docker - Conteinerização
+[Documentação](#-documentação-da-api) •
+[Como Usar](#-como-executar) •
+[Tecnologias](#-tecnologias-utilizadas) •
+[Endpoints](#-endpoints-disponíveis)
 
+</div>
 
-📁 Arquitetura do Projeto
-O projeto segue o padrão MVC (Model-View-Controller) sem a camada de View, pois é uma API REST.
+---
+
+## 👥 Integrantes do Grupo
+
+<table>
+  <tr>
+    <td align="center">
+      <b>Anna Julia Higa Farincho</b>
+    </td>
+    <td align="center">
+      <b>Letícia Macedo</b>
+    </td>
+    <td align="center">
+      <b>Evelyn Mercês</b>
+    </td>
+  </tr>
+</table>
+
+---
+
+## 📋 Sobre o Projeto
+
+Este projeto foi desenvolvido como parte da disciplina de **Desenvolvimento de Aplicações Móveis (DAM)** e consiste em uma API REST completa para gerenciamento escolar do Colégio Porto.
+
+### ✨ Principais Características
+
+- 🏗️ **Arquitetura MVC** bem definida
+- 🔄 **CRUD Completo** para 3 entidades
+- 🔗 **Relacionamentos** entre Professor → Turma → Aluno
+- ✅ **Validações** robustas de dados
+- 📚 **Documentação Swagger** automática
+- 🐳 **Docker** para fácil deploy
+- 💾 **SQLite + SQLAlchemy** ORM
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+<div align="center">
+
+| Tecnologia | Versão | Descrição |
+|------------|--------|-----------|
+| ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white) | 3.11+ | Linguagem de programação |
+| ![Flask](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white) | 2.3.0 | Framework web |
+| ![SQLite](https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white) | 3.x | Banco de dados |
+| ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white) | Latest | Conteinerização |
+| ![Swagger](https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=black) | 0.9.7 | Documentação API |
+
+</div>
+
+---
+
+## 📁 Estrutura do Projeto
+---
 api-colegio-porto/
 ├── app/
 │   ├── __init__.py           # Configuração do Flask e Swagger
@@ -42,274 +94,197 @@ api-colegio-porto/
 ├── docker-compose.yml        # Orquestração Docker
 └── README.md                 # Este arquivo
 
-🗄️ Modelo de Dados
+---
+
+## 🗄️ Modelo de Dados
+
+<div align="center">
+```mermaid
+erDiagram
+    PROFESSOR ||--o{ TURMA : leciona
+    TURMA ||--o{ ALUNO : possui
+    
+    PROFESSOR {
+        int id PK
+        string nome
+        string email UK
+        string cpf UK
+        string materia
+        datetime data_cadastro
+    }
+    
+    TURMA {
+        int id PK
+        string nome
+        int ano
+        string periodo
+        int professor_id FK
+        datetime data_cadastro
+    }
+    
+    ALUNO {
+        int id PK
+        string nome
+        string email UK
+        string cpf UK
+        date data_nascimento
+        int idade
+        float nota_final
+        string situacao
+        int turma_id FK
+        datetime data_cadastro
+    }
+  </div>
+
 Relacionamentos
-Professor (1) ──< (N) Turma (1) ──< (N) Aluno
-
-Um Professor pode ter várias Turmas
-Uma Turma pertence a um Professor
-Uma Turma pode ter vários Alunos
-Um Aluno pertence a uma Turma
-
-Tabelas
-professores
-
-id (PK)
-nome
-email (unique)
-cpf (unique)
-idade (unique)
-materia
-data_cadastro
-
-turmas
-
-id (PK)
-nome
-ano
-periodo (manhã/tarde/noite)
-professor_id (FK)
-data_cadastro
-
-alunos
-
-id (PK)
-nome
-email (unique)
-cpf (unique)
-data_nascimento
-idade
-nota_final
-situacao (aprovado/reprovado/cursando)
-turma_id (FK)
-data_cadastro
-
-
-🚀 Como Executar o Projeto
-Opção 1: Executar Localmente
+---
+Relação             Cardinalidade       Descrição 
+Professor → Turma       1:N           Um professor pode lecionar várias turmasTurma → Aluno1:NUma turma pode ter vários alunos
+---
+Turma → Aluno           1:N           Uma turma pode ter vários alunos
+---
+🚀 Como Executar
+Opção 1️⃣: Executar Localmente
 Pré-requisitos
 
-Python 3.11+
-pip
+Python 3.11 ou superior
+pip (gerenciador de pacotes Python)
 
-Passos
-
-Clone o repositório
-
-bashgit clone https://github.com/SEU_USUARIO/api-colegio-porto.git
+Passo a Passo
+bash# 1. Clone o repositório
+git clone https://github.com/SEU_USUARIO/api-colegio-porto.git
 cd api-colegio-porto
 
-Crie um ambiente virtual
+# 2. Crie um ambiente virtual
+python -m venv venv
 
-bashpython -m venv venv
-
-Ative o ambiente virtual
-
-bash# Windows (PowerShell)
-venv\Scripts\Activate.ps1
-
-# Windows (CMD)
-venv\Scripts\activate.bat
-
+# 3. Ative o ambiente virtual
+# Windows
+venv\Scripts\activate
 # Mac/Linux
 source venv/bin/activate
 
-Instale as dependências
+# 4. Instale as dependências
+pip install -r requirements.txt
 
-bashpip install -r requirements.txt
+# 5. (Opcional) Popule o banco com dados iniciais
+python popular_banco.py
 
-Popule o banco de dados (opcional)
+# 6. Execute a aplicação
+python run.py
+✅ Pronto! Acesse:
 
-bashpython popular_banco.py
-
-Execute a aplicação
-
-bashpython run.py
-
-Acesse a API
-
-
-URL Base: http://localhost:5000
-Documentação Swagger: http://localhost:5000/docs
+🌐 API: http://localhost:5000
+📚 Documentação: http://localhost:5000/docs
 
 
-Opção 2: Executar com Docker
+Opção 2️⃣: Executar com Docker
 Pré-requisitos
 
-Docker
-Docker Compose
+Docker instalado
+Docker Compose instalado
 
-Passos
-
-Clone o repositório
-
-bashgit clone https://github.com/SEU_USUARIO/api-colegio-porto.git
+Passo a Passo
+bash# 1. Clone o repositório
+git clone https://github.com/SEU_USUARIO/api-colegio-porto.git
 cd api-colegio-porto
 
-Build e execute
+# 2. Build e execute
+docker-compose up --build
 
-bashdocker-compose up --build
+# Para rodar em background
+docker-compose up -d
+✅ Pronto! Acesse:
 
-Acesse a API
+🌐 API: http://localhost:5000
+📚 Documentação: http://localhost:5000/docs
 
+Comandos úteis Docker:
+bash# Ver logs
+docker-compose logs -f
 
-URL Base: http://localhost:5000
-Documentação Swagger: http://localhost:5000/docs
-
-
-Para parar
-
-bashCtrl + C
+# Parar containers
 docker-compose down
 
+# Rebuild completo
+docker-compose build --no-cache
+
 📚 Documentação da API
-A documentação completa está disponível via Swagger UI em:
-http://localhost:5000/docs
-Endpoints Disponíveis
-👨‍🏫 Professores (/api/professores)
-
-GET / - Lista todos os professores
-GET /{id} - Busca professor por ID
-POST / - Cria novo professor
-PUT /{id} - Atualiza professor
-DELETE /{id} - Deleta professor
-
-🏫 Turmas (/api/turmas)
-
-GET / - Lista todas as turmas
-GET /{id} - Busca turma por ID
-POST / - Cria nova turma
-PUT /{id} - Atualiza turma
-DELETE /{id} - Deleta turma
-
-👨‍🎓 Alunos (/api/alunos)
-
-GET / - Lista todos os alunos
-GET /{id} - Busca aluno por ID
-POST / - Cria novo aluno
-PUT /{id} - Atualiza aluno
-DELETE /{id} - Deleta aluno
-
-
-🧪 Exemplos de Requisições
-Criar um Professor
-bashcurl -X POST "http://localhost:5000/api/professores/" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "nome": "Carlos Silva",
-    "email": "carlos@colegioporto.com.br",
-    "cpf": "111.222.333-44",
-    "idade": ".."
-    "materia": "Matemática"
-  }'
-Criar uma Turma
-bashcurl -X POST "http://localhost:5000/api/turmas/" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "nome": "SI 3B",
-    "ano": 2024,
-    "periodo": "noite",
-    "professor_id": 1
-  }'
-Criar um Aluno
-bashcurl -X POST "http://localhost:5000/api/alunos/" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "nome": "João Santos",
-    "email": "joao@email.com",
-    "cpf": "555.666.777-88",
-    "data_nascimento": "15/05/2004",
-    "idade": 20,
-    "nota_final": 8.5,
-    "situacao": "aprovado",
-    "turma_id": 1
-  }'
-
+A documentação completa e interativa está disponível via Swagger UI:
+🔗 http://localhost:5000/docs
 📊 Dados Iniciais
-O script popular_banco.py cria os seguintes dados:
+O script popular_banco.py cria automaticamente:
+<table>
+<tr>
+<td>
+👨‍🏫 Professores
 
-Professores
+Kleber Chiles
 
-Kleber Chiles - DevOps
-Giovani Bontempo - API
-Odair Gabriel - Desenvolvimento Mobile
-
-Turma
-
-SI 3A - 2025 - Noite - Prof. Odair Gabriel
-
-Alunas
-
-Anna Julia Higa Farincho - Nota: 7.8 - Aprovada
-Letícia Macedo - Nota: 8.2 - Aprovada
-Evelyn Mercês - Nota: 7.5 - Aprovada
+Matéria: DevOps
 
 
-🎯 Funcionalidades Implementadas
-✅ CRUD completo de Professores
-✅ CRUD completo de Turmas
-✅ CRUD completo de Alunos
-✅ Relacionamentos entre entidades
-✅ Validações de dados
-✅ Tratamento de erros
-✅ Documentação automática com Swagger
-✅ Banco de dados SQLite com SQLAlchemy
-✅ Arquitetura MVC
-✅ Conteinerização com Docker
-✅ Versionamento com Git/GitHub
+Giovani Bontempo
 
-🔍 Validações Implementadas
-
-Email único para Professores e Alunos
-CPF único para Professores e Alunos
-Campos obrigatórios validados
-Integridade referencial: não permite deletar Professor com Turmas ou Turma com Alunos
-Data de nascimento no formato DD/MM/AAAA
-Verificação de existência antes de vincular Professor à Turma
+Matéria: API
 
 
-📝 Aprendizados do Projeto
-Durante o desenvolvimento deste projeto, aprendemos:
+Odair Gabriel
 
-Arquitetura MVC: Separação clara de responsabilidades
-ORM SQLAlchemy: Trabalhar com banco de dados sem SQL direto
-Relacionamentos: One-to-Many entre entidades
-API REST: Verbos HTTP e códigos de status corretos
-Documentação: Importância do Swagger para APIs
-Docker: Conteinerização para facilitar deploy
-Git/GitHub: Versionamento e trabalho em equipe
+Matéria: Desenvolvimento Mobile
 
 
-🐛 Problemas Encontrados e Soluções
-Problema 1: Erro ao deletar Professor com Turmas
-Solução: Implementamos validação que verifica se existem turmas vinculadas antes de permitir a deleção.
-Problema 2: Data de nascimento em formato incorreto
-Solução: Adicionamos parsing da data usando datetime.strptime() e tratamento de exceção.
-Problema 3: Relacionamentos não apareciam no JSON
-Solução: Criamos o método to_dict() em cada model para serializar corretamente os dados.
 
-🚧 Melhorias Futuras
+</td>
+<td>
+🏫 Turma
 
- Adicionar autenticação JWT
- Implementar paginação nas listagens
- Adicionar filtros de busca
- Criar sistema de notas por disciplina
- Adicionar upload de fotos
- Implementar relatórios em PDF
- Adicionar testes unitários
+SI 3A
+
+Ano: 2024
+Período: Noite
+Professor: Odair Gabriel
 
 
-📄 Licença
-Este projeto foi desenvolvido para fins educacionais como parte da disciplina de Desenvolvimento de Aplicações Móveis.
 
-📞 Contato
-Para dúvidas ou sugestões sobre o projeto, entre em contato com os integrantes do grupo.
+</td>
+</tr>
+<tr>
+<td colspan="2">
+👨‍🎓 Alunas
+NomeNotaSituaçãoAnna Julia Higa Farincho7.8✅ AprovadaLetícia Macedo8.2✅ AprovadaEvelyn Mercês7.5✅ Aprovada
+</td>
+</tr>
+</table>
 
-Desenvolvido pelas alunas da Faculdade Impacta
+✅ Funcionalidades Implementadas
+<div align="center">
+FeatureStatusCRUD de Professores✅CRUD de Turmas✅CRUD de Alunos✅Relacionamentos entre entidades✅Validações de dados✅Tratamento de erros✅Documentação Swagger✅Arquitetura MVC✅Docker✅Git/GitHub✅
+</div>
 
-🔗 Links Úteis
+🔒 Validações Implementadas
 
-Documentação Flask
-Documentação SQLAlchemy
-Documentação Flasgger
-Documentação Docker
+✅ Email único para Professores e Alunos
+✅ CPF único para Professores e Alunos
+✅ Campos obrigatórios verificados
+✅ Integridade referencial preservada
+✅ Data de nascimento em formato válido (DD/MM/AAAA)
+✅ Verificação de existência de entidades relacionadas
+✅ Proteção contra deleção com dependências
+---
+📖 O Que Aprendemos
+Durante o desenvolvimento deste projeto, adquirimos conhecimento em:
+<table>
+<tr>
+<td width="50%">
+---
+🎯 Conceitos Técnicos
+
+Arquitetura MVC
+APIs RESTful
+ORM (SQLAlchemy)
+Relacionamentos de banco de dados
+Conteinerização com Docker
+
+</td>
+<td width="50%">
