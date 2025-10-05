@@ -10,7 +10,9 @@ Em desenvolvimento
 Disciplina: Desenvolvimento de APIs e Microserviços (DAM)
 
 Integrantes: Anna Julia Higa Farincho, Letícia Macedo, Evelyn Mercês
+
 Grupo: 4
+
 Instituição: IMPACTA
 
 ## 🛠️ Tecnologias
