@@ -1,7 +1,5 @@
 # API Colégio Porto
 
-Sistema de gerenciamento escolar desenvolvido para a disciplina de Desenvolvimento de Aplicações Móveis.
-
 API REST para controle de professores, turmas e alunos do Colégio Porto.
 
 ## 🚧 Status
