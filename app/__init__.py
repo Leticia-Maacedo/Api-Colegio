@@ -51,5 +51,5 @@ def create_app():
     app.register_blueprint(professor_bp)
     app.register_blueprint(turma_bp)
     app.register_blueprint(aluno_bp)
-
+    
     return app
