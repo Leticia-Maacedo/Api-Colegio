@@ -46,7 +46,8 @@ def create_app():
     
 # importa e registra os blueprints
     from app.controllers.professor_controller import professor_bp
+    from app.controllers.turma_controller import turma_bp
     app.register_blueprint(professor_bp)
+    app.register_blueprint(turma_bp)
     
-    return app
     return app
