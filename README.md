@@ -12,11 +12,6 @@
 
 API REST completa para controle de **Professores**, **Turmas** e **Alunos**, desenvolvida com Flask seguindo arquitetura MVC.
 
-[Documentação](#-documentação-da-api) •
-[Como Usar](#-como-executar) •
-[Tecnologias](#-tecnologias-utilizadas) •
-[Endpoints](#-endpoints-disponíveis)
-
 </div>
 
 ---
@@ -250,8 +245,6 @@ ORM (SQLAlchemy)
 Relacionamentos de banco de dados
 Conteinerização com Docker
 
-👩‍💻 Desenvolvido por
-Evelyn Mercês da Silva
 📆 Ano: 2025
 🏫 Curso: Sistemas de Informação
 💡 Projeto: API Colégio Porto
