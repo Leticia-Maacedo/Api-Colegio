@@ -118,7 +118,7 @@ Este projeto foi desenvolvido como parte da disciplina de **Desenvolvimento de A
 
 ```bash
 # 1. Clone o repositório
-git clone https://github.com/SEU_USUARIO/api-colegio-porto.git
+git clone https://github.com/Evemerces/api-colegio-porto.git
 cd api-colegio-porto
 
 # 2. Crie um ambiente virtual
@@ -155,7 +155,7 @@ Passo a Passo
 bash
 Copiar código
 # 1. Clone o repositório
-git clone https://github.com/SEU_USUARIO/api-colegio-porto.git
+git clone https://github.com/EveMerces/api-colegio-porto.git
 cd api-colegio-porto
 
 # 2. Build e execute
@@ -195,7 +195,9 @@ Giovani Bontempo
 Matéria: API
 
 Odair Gabriel
-Matéria: Desenvolvimento Mobile	Turma: SI 3A
+Matéria: Desenvolvimento Mobile
+
+Turma: SI 3A
 Ano: 2025
 Período: Noite
 Professor: Odair Gabriel
