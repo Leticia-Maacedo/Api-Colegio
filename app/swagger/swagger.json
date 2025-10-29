@@ -1,0 +1,18 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API Colégio Porto",
+    "version": "1.0.0",
+    "description": "API REST para gerenciamento escolar"
+  },
+  "paths": {
+    "/alunos": {
+      "get": {
+        "summary": "Lista todos os alunos",
+        "responses": {
+          "200": { "description": "Lista de alunos" }
+        }
+      }
+    }
+  }
+}
