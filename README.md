@@ -24,7 +24,7 @@ API REST completa para controle de **Professores**, **Turmas** e **Alunos**, des
       <b>Anna Julia Higa Farincho</b>
     </td>
     <td align="center">
-      <b>Letícia Macedo</b>
+      <b>Leticia Macedo</b>
     </td>
     <td align="center">
       <b>Evelyn Mercês</b>
