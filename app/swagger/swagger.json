@@ -10,7 +10,220 @@
       "get": {
         "summary": "Lista todos os alunos",
         "responses": {
-          "200": { "description": "Lista de alunos" }
+          "200": { "description": "Lista de alunos retornada com sucesso" }
+        }
+      },
+      "post": {
+        "summary": "Cria um novo aluno",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nome": { "type": "string" },
+                  "idade": { "type": "integer" },
+                  "turma_id": { "type": "integer" }
+                },
+                "required": ["nome", "idade", "turma_id"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Aluno criado com sucesso" }
+        }
+      }
+    },
+    "/alunos/{id}": {
+      "get": {
+        "summary": "Busca um aluno por ID",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }
+        ],
+        "responses": {
+          "200": { "description": "Aluno encontrado" },
+          "404": { "description": "Aluno não encontrado" }
+        }
+      },
+      "put": {
+        "summary": "Atualiza um aluno existente",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nome": { "type": "string" },
+                  "idade": { "type": "integer" },
+                  "turma_id": { "type": "integer" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Aluno atualizado com sucesso" }
+        }
+      },
+      "delete": {
+        "summary": "Remove um aluno pelo ID",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }
+        ],
+        "responses": {
+          "204": { "description": "Aluno removido com sucesso" }
+        }
+      }
+    },
+    "/professores": {
+      "get": {
+        "summary": "Lista todos os professores",
+        "responses": {
+          "200": { "description": "Lista de professores retornada com sucesso" }
+        }
+      },
+      "post": {
+        "summary": "Cadastra um novo professor",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nome": { "type": "string" },
+                  "materia": { "type": "string" }
+                },
+                "required": ["nome", "materia"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Professor criado com sucesso" }
+        }
+      }
+    },
+    "/professores/{id}": {
+      "get": {
+        "summary": "Busca um professor por ID",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }
+        ],
+        "responses": {
+          "200": { "description": "Professor encontrado" },
+          "404": { "description": "Professor não encontrado" }
+        }
+      },
+      "put": {
+        "summary": "Atualiza um professor existente",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nome": { "type": "string" },
+                  "materia": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Professor atualizado com sucesso" }
+        }
+      },
+      "delete": {
+        "summary": "Remove um professor",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }
+        ],
+        "responses": {
+          "204": { "description": "Professor removido com sucesso" }
+        }
+      }
+    },
+    "/turmas": {
+      "get": {
+        "summary": "Lista todas as turmas",
+        "responses": {
+          "200": { "description": "Lista de turmas retornada com sucesso" }
+        }
+      },
+      "post": {
+        "summary": "Cria uma nova turma",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nome": { "type": "string" },
+                  "professor_id": { "type": "integer" }
+                },
+                "required": ["nome", "professor_id"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Turma criada com sucesso" }
+        }
+      }
+    },
+    "/turmas/{id}": {
+      "get": {
+        "summary": "Busca uma turma por ID",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }
+        ],
+        "responses": {
+          "200": { "description": "Turma encontrada" },
+          "404": { "description": "Turma não encontrada" }
+        }
+      },
+      "put": {
+        "summary": "Atualiza uma turma existente",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nome": { "type": "string" },
+                  "professor_id": { "type": "integer" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Turma atualizada com sucesso" }
+        }
+      },
+      "delete": {
+        "summary": "Remove uma turma",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }
+        ],
+        "responses": {
+          "204": { "description": "Turma removida com sucesso" }
         }
       }
     }
