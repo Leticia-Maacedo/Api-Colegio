@@ -11,10 +11,8 @@ def create_app():
     app.config.from_object(Config)
     db.init_app(app)
 
-    # --- Serve a interface do Swagger UI ---
     @app.route('/docs')
     def swagger_ui():
-        # Mostra o HTML do Swagger UI (usando CDN oficial)
         html_content = """
         <!DOCTYPE html>
         <html lang="pt-br">
@@ -37,19 +35,22 @@ def create_app():
         """
         return html_content
 
-    # --- Serve o arquivo swagger.json ---
     @app.route('/swagger.json')
     def swagger_spec():
         with open(os.path.join(app.root_path, 'swagger', 'swagger.json')) as f:
             return jsonify(json.load(f))
 
     with app.app_context():
+        from app.models.aluno import Aluno
+        from app.models.turma import Turma
+        from app.models.professor import Professor
+
         db.create_all()
 
-    # --- Importa e registra blueprints ---
     from app.controllers.professor_controller import professor_bp
     from app.controllers.turma_controller import turma_bp
     from app.controllers.aluno_controller import aluno_bp
+    
     app.register_blueprint(professor_bp)
     app.register_blueprint(turma_bp)
     app.register_blueprint(aluno_bp)

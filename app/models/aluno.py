@@ -6,17 +6,12 @@ class Aluno(db.Model):
     
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(100), nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False)
-    cpf = db.Column(db.String(14), unique=True, nullable=False)
-    data_nascimento = db.Column(db.Date, nullable=False)
-    idade = db.Column(db.Integer, nullable=False)
-    turma_id = db.Column(db.Integer, db.ForeignKey('turmas.id'), nullable=True)
+    data_nascimento = db.Column(db.Date)
+    idade = db.Column(db.Integer)
+    turma_id = db.Column(db.Integer, db.ForeignKey('turmas.id'))
     nota_primeiro_semestre = db.Column(db.Float)
     nota_segundo_semestre = db.Column(db.Float)
-    nota_final = db.Column(db.Float)
-    situacao = db.Column(db.String(20))
-    data_cadastro = db.Column(db.DateTime, default=datetime.utcnow)
-    turma_id = db.Column(db.Integer, db.ForeignKey('turmas.id'), nullable=True)
+    media_final = db.Column(db.Float)
     
     def __repr__(self):
         return f'<Aluno {self.nome}>'
@@ -25,13 +20,11 @@ class Aluno(db.Model):
         return {
             'id': self.id,
             'nome': self.nome,
-            'email': self.email,
-            'cpf': self.cpf,
-            'data_nascimento': self.data_nascimento.strftime('%d/%m/%Y'),
+            'data_nascimento': self.data_nascimento.strftime('%d/%m/%Y') if self.data_nascimento else None,
             'idade': self.idade,
-            'nota_final': self.nota_final,
-            'situacao': self.situacao,
             'turma_id': self.turma_id,
-            'turma': self.turma.nome if self.turma else None,
-            'data_cadastro': self.data_cadastro.strftime('%d/%m/%Y %H:%M')
+            'nota_primeiro_semestre': self.nota_primeiro_semestre,
+            'nota_segundo_semestre': self.nota_segundo_semestre,
+            'media_final': self.media_final,
+            'turma_nome': self.turma.descricao if self.turma else None,
         }

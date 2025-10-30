@@ -9,37 +9,12 @@ aluno_bp = Blueprint('alunos', __name__, url_prefix='/api/alunos')
 
 @aluno_bp.route('/', methods=['GET'])
 def listar_alunos():
-    """
-    Lista todos os alunos
-    ---
-    tags:
-      - Alunos
-    responses:
-      200:
-        description: Lista de alunos retornada com sucesso
-    """
     alunos = Aluno.query.all()
     return jsonify([a.to_dict() for a in alunos]), 200
 
 
 @aluno_bp.route('/<int:id>', methods=['GET'])
 def buscar_aluno(id):
-    """
-    Busca um aluno pelo ID
-    ---
-    tags:
-      - Alunos
-    parameters:
-      - name: id
-        in: path
-        type: integer
-        required: true
-    responses:
-      200:
-        description: Aluno encontrado
-      404:
-        description: Aluno nao encontrado
-    """
     aluno = Aluno.query.get(id)
     
     if not aluno:
@@ -50,75 +25,14 @@ def buscar_aluno(id):
 
 @aluno_bp.route('/', methods=['POST'])
 def criar_aluno():
-    """
-    Cria um novo aluno
-    ---
-    tags:
-      - Alunos
-    parameters:
-      - in: body
-        name: body
-        required: true
-        schema:
-          required:
-            - nome
-            - email
-            - cpf
-            - data_nascimento
-            - idade
-          properties:
-            nome:
-              type: string
-              example: Maria Silva
-            email:
-              type: string
-              example: maria@email.com
-            cpf:
-              type: string
-              example: 987.654.321-00
-            data_nascimento:
-              type: string
-              example: 10/02/2005
-            idade:
-              type: integer
-              example: 20
-            nota_final:
-              type: number
-              example: 7.5
-            situacao:
-              type: string
-              example: aprovado
-            turma_id:
-              type: integer
-              example: 1
-    responses:
-      201:
-        description: Aluno criado com sucesso
-      400:
-        description: Dados invalidos
-    """
     dados = request.get_json()
     
     if not dados.get('nome'):
         return jsonify({'erro': 'Nome e obrigatorio'}), 400
-    
-    if not dados.get('email'):
-        return jsonify({'erro': 'Email e obrigatorio'}), 400
-    
-    if not dados.get('cpf'):
-        return jsonify({'erro': 'CPF e obrigatorio'}), 400
-    
     if not dados.get('data_nascimento'):
         return jsonify({'erro': 'Data de nascimento e obrigatoria'}), 400
-    
     if not dados.get('idade'):
         return jsonify({'erro': 'Idade e obrigatoria'}), 400
-    
-    if Aluno.query.filter_by(email=dados['email']).first():
-        return jsonify({'erro': 'Email ja cadastrado'}), 400
-    
-    if Aluno.query.filter_by(cpf=dados['cpf']).first():
-        return jsonify({'erro': 'CPF ja cadastrado'}), 400
     
     if dados.get('turma_id'):
         turma = Turma.query.get(dados['turma_id'])
@@ -130,12 +44,11 @@ def criar_aluno():
         
         novo_aluno = Aluno(
             nome=dados['nome'],
-            email=dados['email'],
-            cpf=dados['cpf'],
             data_nascimento=data_nasc,
             idade=dados['idade'],
-            nota_final=dados.get('nota_final'),
-            situacao=dados.get('situacao'),
+            nota_primeiro_semestre=dados.get('nota_primeiro_semestre'),
+            nota_segundo_semestre=dados.get('nota_segundo_semestre'),
+            media_final=dados.get('media_final'),
             turma_id=dados.get('turma_id')
         )
         
@@ -153,42 +66,6 @@ def criar_aluno():
 
 @aluno_bp.route('/<int:id>', methods=['PUT'])
 def atualizar_aluno(id):
-    """
-    Atualiza um aluno
-    ---
-    tags:
-      - Alunos
-    parameters:
-      - name: id
-        in: path
-        type: integer
-        required: true
-      - in: body
-        name: body
-        schema:
-          properties:
-            nome:
-              type: string
-            email:
-              type: string
-            cpf:
-              type: string
-            data_nascimento:
-              type: string
-            idade:
-              type: integer
-            nota_final:
-              type: number
-            situacao:
-              type: string
-            turma_id:
-              type: integer
-    responses:
-      200:
-        description: Aluno atualizado com sucesso
-      404:
-        description: Aluno nao encontrado
-    """
     aluno = Aluno.query.get(id)
     
     if not aluno:
@@ -199,30 +76,21 @@ def atualizar_aluno(id):
     try:
         if 'nome' in dados:
             aluno.nome = dados['nome']
-        
-        if 'email' in dados:
-            existe = Aluno.query.filter_by(email=dados['email']).first()
-            if existe and existe.id != id:
-                return jsonify({'erro': 'Email ja cadastrado'}), 400
-            aluno.email = dados['email']
-        
-        if 'cpf' in dados:
-            existe = Aluno.query.filter_by(cpf=dados['cpf']).first()
-            if existe and existe.id != id:
-                return jsonify({'erro': 'CPF ja cadastrado'}), 400
-            aluno.cpf = dados['cpf']
-        
+            
         if 'data_nascimento' in dados:
             aluno.data_nascimento = datetime.strptime(dados['data_nascimento'], '%d/%m/%Y').date()
         
         if 'idade' in dados:
             aluno.idade = dados['idade']
         
-        if 'nota_final' in dados:
-            aluno.nota_final = dados['nota_final']
-        
-        if 'situacao' in dados:
-            aluno.situacao = dados['situacao']
+        if 'nota_primeiro_semestre' in dados:
+            aluno.nota_primeiro_semestre = dados['nota_primeiro_semestre']
+            
+        if 'nota_segundo_semestre' in dados:
+            aluno.nota_segundo_semestre = dados['nota_segundo_semestre']
+
+        if 'media_final' in dados:
+            aluno.media_final = dados['media_final']
         
         if 'turma_id' in dados:
             if dados['turma_id']:
@@ -243,22 +111,6 @@ def atualizar_aluno(id):
 
 @aluno_bp.route('/<int:id>', methods=['DELETE'])
 def deletar_aluno(id):
-    """
-    Deleta um aluno
-    ---
-    tags:
-      - Alunos
-    parameters:
-      - name: id
-        in: path
-        type: integer
-        required: true
-    responses:
-      200:
-        description: Aluno deletado com sucesso
-      404:
-        description: Aluno nao encontrado
-    """
     aluno = Aluno.query.get(id)
     
     if not aluno:
