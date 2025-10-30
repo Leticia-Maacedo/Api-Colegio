@@ -210,3 +210,4 @@ def deletar_turma(id):
     except Exception as e:
         db.session.rollback()
         return jsonify({'erro': f'Erro ao deletar: {str(e)}'}), 500
+
